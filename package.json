@@ -1,5 +1,5 @@
 {
-  "name": "steel",
+  "name": "bombay",
   "version": "1.0.0",
   "main": "index.js",
   "author": "Monarch Wadia <monarchwadia@gmail.com>",
@@ -14,7 +14,7 @@
     "tmp": "^0.0.33"
   },
   "bin": {
-    "steel": "src/cli/steel-cli.js",
-    "steel-scripts": "src/scripts/steel-scripts.js" 
+    "bombay": "src/cli/bombay-cli.js",
+    "bombay-scripts": "src/scripts/bombay-scripts.js" 
   }
 }

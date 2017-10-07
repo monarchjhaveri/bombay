@@ -14,7 +14,7 @@ const TEMPLATES_DIR = __dirname + '/templates'
 
 prog
   .version('0.0.1')
-  .command('new', 'Create a new Steel application')
+  .command('new', 'Create a new Bombay application')
   .argument('<name>', 'Name of the new application. This will be the folder in which your application will be created.')
   .action(function(args, options, logger) {
     const id = crypto.randomBytes(16).toString("hex");
