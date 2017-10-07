@@ -19,13 +19,19 @@ prog
   .action(function(args, options, logger) {
     const id = crypto.randomBytes(16).toString("hex");
     const OUTPUT_DIR = path.join(process.cwd(), args.name)
+
+    const mustacheParams = {
+      app: {
+        name: args.name
+      }
+    }
     
     return new Promise(function (resolve, reject) {
       async.waterfall([
         (callback) => getTemplates('new', callback),
         (files, callback) => {
           files.forEach(file => {
-            file.output = mustache.render(file.templateContent);
+            file.output = mustache.render(file.templateContent, mustacheParams);
           });
 
           callback(null, files);
