@@ -2,25 +2,24 @@
 
 const prog = require('caporal');
 const async = require('async');
-const crypto = require("crypto");
 const fs = require('fs-extra');
 const mustache = require('mustache');
-mustache.tags = ['{@', '@}'];
 const path = require('path');
-const bombayScripts = require('../scripts/bombay-scripts.js');
 const exec = require('child_process').exec;
 
+const bombayScripts = require('../scripts/bombay-scripts.js');
 const getTemplates = require('./util/getTemplates');
 const writeFiles = require('./util/writeFiles');
 
 const TEMPLATES_DIR = __dirname + '/templates'
+
+mustache.tags = ['{@', '@}'];
 
 prog
   .version('0.0.1')
   .command('new', 'Create a new Bombay application')
   .argument('<name>', 'Name of the new application. This will be the folder in which your application will be created.')
   .action(function(args, options, logger) {
-    const id = crypto.randomBytes(16).toString("hex");
     const OUTPUT_DIR = path.join(process.cwd(), args.name)
 
     const mustacheParams = {
