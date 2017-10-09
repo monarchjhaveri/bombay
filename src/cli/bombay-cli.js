@@ -5,7 +5,9 @@ const async = require('async');
 const crypto = require("crypto");
 const fs = require('fs-extra');
 const mustache = require('mustache');
+mustache.tags = ['{@', '@}'];
 const path = require('path');
+const bombayScripts = require('../scripts/bombay-scripts.js');
 
 const getTemplates = require('./util/getTemplates');
 const writeFiles = require('./util/writeFiles');
@@ -43,6 +45,10 @@ prog
         else resolve(data);
       })
     })
+  })
+  .command('build', 'Start a Bombay application')
+  .action(function(args, options, logger) {
+    bombayScripts.build();
   })
 
 prog.parse(process.argv)

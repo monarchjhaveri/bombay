@@ -1,5 +1,5 @@
 {
-  "name": "{{app.name}}",
+  "name": "AppName",
   "version": "0.0.1",
   "main": "index.js",
   "license": "MIT",
@@ -7,9 +7,13 @@
     "react": "^16.0.0"
   },
   "devDependencies": {
-
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.0",
+    "webpack": "^3.6.0",
+    "webpack-dev-server": "^2.9.1"
   },
   "scripts": {
-    
+    "start": "bombay build"
   }
 }
