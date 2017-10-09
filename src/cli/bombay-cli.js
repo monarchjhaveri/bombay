@@ -8,6 +8,7 @@ const mustache = require('mustache');
 mustache.tags = ['{@', '@}'];
 const path = require('path');
 const bombayScripts = require('../scripts/bombay-scripts.js');
+const exec = require('child_process').exec;
 
 const getTemplates = require('./util/getTemplates');
 const writeFiles = require('./util/writeFiles');
@@ -38,7 +39,17 @@ prog
 
           callback(null, files);
         },
-        (files, callback) => writeFiles(OUTPUT_DIR, files, callback)
+        (files, callback) => writeFiles(OUTPUT_DIR, files, callback),
+        (files, callback) => {
+          exec(`cd ${OUTPUT_DIR} && yarn install`, (err, stdout, stderr) => {
+            process.stdout.write(stdout);
+            process.stderr.write(stderr);
+            console.error(err);
+
+            if (err) callback(err);
+            else callback();
+          })
+        }
       ], function(err, data) {  
         console.log(data)
         if (err) return reject(err);
