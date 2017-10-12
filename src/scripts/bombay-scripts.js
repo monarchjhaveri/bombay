@@ -8,10 +8,11 @@ const WebpackDevServer = require('webpack-dev-server');
 const PROJECT_DIRECTORY = process.cwd();
 const SCRIPTS_DIRECTORY = __dirname;
 
-console.log(fs.readdirSync(PROJECT_DIRECTORY))
-
 const compiler = Webpack({
-  entry: path.join(PROJECT_DIRECTORY, "app/bin/app.js"),
+  entry: [
+    'webpack-dev-server/client?http://localhost:1337',
+    path.join(PROJECT_DIRECTORY, "/app/bin/app.js")
+  ],
   output: {
     path: path.join(PROJECT_DIRECTORY, "/target"),
     filename: "bundle.js"
@@ -48,11 +49,15 @@ module.exports = {
     const s = new WebpackDevServer(compiler, {
       stats: {
         colors: true
+      },
+      inline: true,
+      watchOptions: {
+        poll: true
       }
     });
 
     s.listen(1337, '127.0.0.1', () => {
-      console.log("Bombay is listening on http://localhost:1337");
+      console.log("Bombay is listening on http://localhost:1337!");
     })
   }
 }

@@ -1,7 +1,7 @@
 {
   "name": "bombay",
   "version": "0.0.1",
-  "main": "src/bombay.js",
+  "main": "src/api/bombay.js",
   "author": "Monarch Wadia <monarchwadia@gmail.com>",
   "license": "MIT",
   "dependencies": {

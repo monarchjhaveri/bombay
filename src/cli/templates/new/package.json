@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
+    "bombay": "^0.0.1",
     "react": "^16.0.0"
   },
   "devDependencies": {
