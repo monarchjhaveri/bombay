@@ -56,9 +56,13 @@ prog
       })
     })
   })
-  .command('build', 'Start a Bombay application')
+  .command('build', 'Build a Bombay application')
   .action(function(args, options, logger) {
     bombayScripts.build();
+  })
+  .command('serve', 'Start a live reload server for a Bombay application.')
+  .action(function(args, options, logger) {
+    bombayScripts.serve();
   })
 
 prog.parse(process.argv)

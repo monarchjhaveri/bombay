@@ -1,15 +1,16 @@
 #!/usr/bin/env node
 const fs = require('fs-extra');
-const webpack = require('webpack');
+const Webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
+const WebpackDevServer = require('webpack-dev-server');
 
 const PROJECT_DIRECTORY = process.cwd();
 const SCRIPTS_DIRECTORY = __dirname;
 
 console.log(fs.readdirSync(PROJECT_DIRECTORY))
 
-const compiler = webpack({
+const compiler = Webpack({
   entry: path.join(PROJECT_DIRECTORY, "app/bin/app.js"),
   output: {
     path: path.join(PROJECT_DIRECTORY, "/target"),
@@ -42,5 +43,16 @@ const handler = (err, stats) => {
 }
 
 module.exports = {
-  build: () => compiler.run(handler)
+  build: () => compiler.run(handler),
+  serve: () => {
+    const s = new WebpackDevServer(compiler, {
+      stats: {
+        colors: true
+      }
+    });
+
+    s.listen(1337, '127.0.0.1', () => {
+      console.log("Bombay is listening on http://localhost:1337");
+    })
+  }
 }
